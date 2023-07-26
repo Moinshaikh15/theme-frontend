@@ -7,8 +7,10 @@ import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import LogIn from "./pages/LogIn";
 import { useEffect, useState } from "react";
+import ThemeSelector from "./components/ThemeSelector";
 
 function App() {
+  let [selectedTheme, setSelectedTheme] = useState("theme_one");
   let [notificationMsg, setNotificationMsg] = useState("Logged In");
   let [showNotification, setShowNotification] = useState(false);
   let [notificationBg, setNotificationBg] = useState("");
@@ -36,7 +38,7 @@ function App() {
   }, [isLoggedIn, history]);
 
   return (
-    <div className="app">
+    <div className={`app ${selectedTheme}`}>
       <div
         className="notification"
         style={{
@@ -47,7 +49,7 @@ function App() {
         <p>{notificationMsg}</p>
       </div>
 
-      {isLoggedIn && <Header />}
+      {isLoggedIn && <Header selectedTheme={selectedTheme} />}
 
       <Routes>
         <Route
@@ -60,10 +62,15 @@ function App() {
             />
           }
         />
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/info" element={<Info />} />
+        <Route path="/" element={<Home selectedTheme={selectedTheme} />} />
+        <Route
+          path="/about"
+          element={<About selectedTheme={selectedTheme} />}
+        />
+        <Route path="/info" element={<Info selectedTheme={selectedTheme} />} />
       </Routes>
+
+      {isLoggedIn && <ThemeSelector setSelectedTheme={setSelectedTheme} />}
 
       {isLoggedIn && <Footer />}
     </div>

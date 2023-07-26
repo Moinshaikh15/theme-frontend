@@ -3,6 +3,19 @@
 $primaryColor: #0098fe;
 $textColor: white;
 
+$theme-one-bg: #0098fe;
+$theme-one-text: white;
+
+$theme-two-bg: #164e63;
+$theme-two-text: white;
+
+$theme-three-bg: #ffd60a;
+$theme-three-text: black;
+
+:root {
+  --bgCol: #0098fe;
+  --textCol: white;
+}
 * {
   margin: 0;
   padding: 0;
@@ -23,6 +36,7 @@ $textColor: white;
   min-height: 100vh;
   @include flexbox(column, flex-start, flex-start, 0);
   padding: 0px 10vw;
+  padding-top: 100px;
 }
 
 .Login-page {
@@ -71,26 +85,73 @@ $textColor: white;
 }
 
 .header {
+  background-color: var(--bgCol);
+  color: var(--textCol);
   width: 100%;
   @include flexbox(row, space-between, flex-start, 10px);
-  padding: 10px 0;
+  padding: 10px 10vw;
+  position: fixed;
+  left: 0;
+  top: 0;
 
   li {
     list-style: none;
     display: inline-block;
-    margin: 0 16px;
+    margin-left: 30px;
+    cursor: pointer;
   }
 }
 
-.home-page {
+#home,
+#info,
+#about {
   min-height: 100vh;
-  padding-top: 60px;
+  @include flexbox(column, flex-start, flex-start, 28px);
+
+  h2 {
+    color: var(--bgCol);
+  }
+}
+
+.theme-selector {
+  background-color: white;
+  @include flexbox(row, center, center, 16px);
+  position: fixed;
+  right: 10vw;
+  bottom: 60px;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0px 1px 6px 1px #cdcccc;
+
+  .themes {
+    @include flexbox(row, center, center, 10px);
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .theme-one {
+      background-color: $theme-one-bg;
+    }
+    .theme-two {
+      background-color: $theme-two-bg;
+    }
+    .theme-three {
+      background-color: $theme-three-bg;
+    }
+  }
 }
 
 .footer {
+  height: 160px;
   width: 100%;
   @include flexbox(column, center, center, 10px);
   padding: 10px 0;
+  background-color: var(--bgCol);
+  color: var(--textCol);
 
   li {
     list-style: none;
@@ -98,3 +159,49 @@ $textColor: white;
     margin: 0 16px;
   }
 }
+
+// .theme_one {
+//   .header,
+//   .footer {
+//     background-color: $theme-one-bg;
+//     color: $theme-one-text;
+//   }
+//   #home,
+//   #about,
+//   #info {
+//     h2 {
+//       color: $theme-one-bg;
+//     }
+//   }
+// }
+
+// .theme_two {
+//   .header,
+//   .footer {
+//     background-color: $theme-two-bg;
+//     color: $theme-two-text;
+//   }
+
+//   #home,
+//   #about,
+//   #info {
+//     h2 {
+//       color: $theme-two-bg;
+//     }
+//   }
+// }
+
+// .theme_three {
+//   .header,
+//   .footer {
+//     background-color: $theme-three-bg;
+//     color: $theme-three-text;
+//   }
+//   #home,
+//   #about,
+//   #info {
+//     h2 {
+//       color: $theme-three-bg;
+//     }
+//   }
+// }
