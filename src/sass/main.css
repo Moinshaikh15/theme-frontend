@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald&family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0px 10vw;
+}
+
+.Login-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.Login-page .auth-card {
+  background-color: white;
+  width: 21rem;
+  height: 368px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 60px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+}
+.Login-page .auth-card form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  overflow: hidden;
+}
+.Login-page .auth-card form .input-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+.Login-page .auth-card form .input-box input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid gray;
+  outline: none;
+}
+.Login-page .auth-card form #submit {
+  padding: 4px 20px;
+  background-color: #0098fe;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+}
+.header li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.home-page {
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.footer li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 16px;
+}/*# sourceMappingURL=main.css.map */
