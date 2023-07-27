@@ -111,12 +111,27 @@ $theme-three-text: black;
 #home,
 #info,
 #about {
-  padding-top: 100px;
+  padding:100px 0;
+  
   min-height: 100vh;
   @include flexbox(column, flex-start, flex-start, 28px);
 
   h2 {
     color: var(--bgCol);
+  }
+}
+#home {
+  .stack-div {
+    @include flexbox(row, flex-start, flex-start, 100px);
+  }
+  ol{
+    li{
+      margin-bottom: 20px;
+    }
+  }
+  
+  .content{
+    @include flexbox(column, flex-start, flex-start, 18px)
   }
 }
 

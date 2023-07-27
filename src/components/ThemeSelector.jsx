@@ -16,13 +16,16 @@ export default function ThemeSelector() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/theme/update-theme", {
-        method: "POST",
-        headers: {
-          "content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        "https://theme-backend.onrender.com/theme/update-theme",
+        {
+          method: "POST",
+          headers: {
+            "content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
       if (response.status === 200) {
         let result = await response.json();
       } else {
@@ -35,7 +38,7 @@ export default function ThemeSelector() {
 
   useEffect(() => {
     //connect socket
-    const newSocket = io("http://localhost:5000");
+    const newSocket = io("https://theme-backend.onrender.com");
     setSocket(newSocket);
 
     newSocket?.emit("theme_check", {
@@ -58,6 +61,12 @@ export default function ThemeSelector() {
         }
       }
     });
+
+    return () => {
+      if (newSocket) {
+        newSocket.disconnect();
+      }
+    };
   }, []);
 
   return (

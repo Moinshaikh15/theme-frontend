@@ -16,7 +16,7 @@ export default function SignUp({ setIsLoggedIn }) {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/auth/signup", {
+      const response = await fetch("https://theme-backend.onrender.com/auth/signup", {
         method: "POST",
         headers: {
           "content-Type": "application/json",

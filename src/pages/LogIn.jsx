@@ -10,7 +10,7 @@ export default function LogIn({ setIsLoggedIn }) {
     let password = e.target.password.value;
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
+      const response = await fetch("https://theme-backend.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
@@ -36,7 +36,7 @@ export default function LogIn({ setIsLoggedIn }) {
 
   return (
     <div className="Login-page">
-      
+
       <div className="auth-card">
         <h3>Log In</h3>
         <form action="" onSubmit={handleLogin}>

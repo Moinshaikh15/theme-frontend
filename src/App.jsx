@@ -25,7 +25,7 @@ function App() {
       } else {
         setIsLoggedIn(false);
       }
-      
+
     }
 
     if (!isLoggedIn) {
@@ -36,7 +36,7 @@ function App() {
   }, [isLoggedIn, history]);
 
   return (
-    <div>
+    <div className="app">
       {isLoggedIn && <Header setIsLoggedIn={setIsLoggedIn} />}
 
       <Routes>
