@@ -8,6 +8,7 @@ import Footer from "./layout/Footer";
 import LogIn from "./pages/LogIn";
 import { useEffect, useState } from "react";
 import ThemeSelector from "./components/ThemeSelector";
+import SignUp from "./pages/SignUp";
 
 function App() {
   let [selectedTheme, setSelectedTheme] = useState("theme_one");
@@ -52,16 +53,8 @@ function App() {
       {isLoggedIn && <Header selectedTheme={selectedTheme} />}
 
       <Routes>
-        <Route
-          path="/login"
-          element={
-            <LogIn
-              setNotificationMsg={setNotificationMsg}
-              setShowNotification={setShowNotification}
-              setNotificationBg={setNotificationBg}
-            />
-          }
-        />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Home selectedTheme={selectedTheme} />} />
         <Route
           path="/about"

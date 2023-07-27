@@ -36,7 +36,6 @@ $theme-three-text: black;
   min-height: 100vh;
   @include flexbox(column, flex-start, flex-start, 0);
   padding: 0px 10vw;
-  padding-top: 100px;
 }
 
 .Login-page {
@@ -46,8 +45,8 @@ $theme-three-text: black;
 
   .auth-card {
     background-color: white;
-    width: 21rem;
-    height: 368px;
+    width: 24rem;
+    min-height: 368px;
     padding: 30px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 60px;
     border-radius: 20px;
@@ -79,7 +78,13 @@ $theme-three-text: black;
         border: none;
         font-size: 16px;
         border-radius: 8px;
+        cursor: pointer;
       }
+    }
+    .credentials {
+      width: 100%;
+      font-size: 14px;
+      @include flexbox(column, center, center, 8px);
     }
   }
 }
@@ -105,6 +110,7 @@ $theme-three-text: black;
 #home,
 #info,
 #about {
+  padding-top: 100px;
   min-height: 100vh;
   @include flexbox(column, flex-start, flex-start, 28px);
 

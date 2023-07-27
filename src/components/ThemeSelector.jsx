@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-export default function ThemeSelector({ setSelectedTheme }) {
+
+export default function ThemeSelector() {
   let [socket, setSocket] = useState(null);
+
   let handleClick = async (bg_col, text_col, theme_num) => {
-    let userId = JSON.parse(localStorage.getItem("user")).id;
+    let savedUserId = JSON.parse(localStorage.getItem("user")).id;
     let body = {
-      userId: userId,
+      userId: savedUserId,
       primaryColor: bg_col,
       secondaryColor: "White",
       textColor: text_col,
       fontSize: "16",
       font: "Inter",
     };
-    console.log(body);
+
     try {
       const response = await fetch("http://localhost:5000/theme/update-theme", {
         method: "POST",
@@ -29,15 +31,31 @@ export default function ThemeSelector({ setSelectedTheme }) {
       console.log(err);
     }
   };
+
   useEffect(() => {
+    //connect socket
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
-    socket?.on("theme-updated", (theme_preference) => {
-      console.log("theme-updated");
-      let { primaryColor, textColor } = theme_preference;
-      const root = document.documentElement;
-      root?.style.setProperty("--bgCol", primaryColor);
-      root?.style.setProperty("--textCol", textColor);
+
+    newSocket?.emit("theme_check", {
+      id: Number(JSON.parse(localStorage.getItem("user")).id),
+    });
+
+    // when theme-updated message received
+    newSocket?.on("theme-updated", (theme_preference) => {
+      let savedUserId = JSON.parse(localStorage.getItem("user")).id;
+
+      if (theme_preference !== null && theme_preference !== undefined) {
+        let { primary_colour, text_colour, user_id } = theme_preference;
+
+        // check if message for the same user by checking userID
+        if (savedUserId === user_id) {
+          // Update the root variable to change theme
+          const root = document.documentElement;
+          root?.style.setProperty("--bgCol", primary_colour);
+          root?.style.setProperty("--textCol", text_colour);
+        }
+      }
     });
   }, []);
 
