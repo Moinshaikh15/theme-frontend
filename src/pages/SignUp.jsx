@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUp() {
+export default function SignUp({ setIsLoggedIn }) {
   let navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -26,11 +26,12 @@ export default function SignUp() {
 
       if (response.status === 200) {
         let result = await response.json();
-        console.log(result)
         localStorage.setItem("user", JSON.stringify(result.userInfo));
         navigate("/");
+        setIsLoggedIn(true);
+
       } else {
-        // Handle other response statuses (e.g., display error message)
+        console.log(response);
       }
     } catch (error) {
       alert(error.message);
@@ -38,7 +39,8 @@ export default function SignUp() {
   };
 
   return (
-    <div className="Login-page">
+    <div className="SignUp-page">
+
       <div className="auth-card">
         <h3>Sign Up</h3>
         <form action="" onSubmit={handleLogin}>
@@ -69,7 +71,7 @@ export default function SignUp() {
               placeholder="*******"
             />
           </div>
-          <input type="submit" name="submit" id="submit" value="Sign Up"/>
+          <input type="submit" name="submit" id="submit" value="Sign Up" />
         </form>
       </div>
     </div>

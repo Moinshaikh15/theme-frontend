@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function About({ selectedTheme }) {
+export default function About() {
   return (
     <div id="about" >
       <h2>ABOUT </h2>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Home({selectedTheme}) {
+export default function Home() {
   return (
     <div  id="home">
       <h2>HOME </h2>

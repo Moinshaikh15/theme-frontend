@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function LogIn() {
+export default function LogIn({ setIsLoggedIn }) {
   let navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -18,13 +18,16 @@ export default function LogIn() {
         body: JSON.stringify({ user_name: username, password }),
       });
 
+      // if login successful then add the user object to localStorage
       if (response.status === 200) {
         let result = await response.json();
-        console.log(result);
         localStorage.setItem("user", JSON.stringify(result.userInfo));
+
         navigate("/");
-      } else {
-        // Handle other response statuses (e.g., display error message)
+        setIsLoggedIn(true);
+      } 
+      else {
+        console.log(response)
       }
     } catch (error) {
       alert(error.message);
@@ -33,6 +36,7 @@ export default function LogIn() {
 
   return (
     <div className="Login-page">
+      
       <div className="auth-card">
         <h3>Log In</h3>
         <form action="" onSubmit={handleLogin}>
@@ -54,7 +58,7 @@ export default function LogIn() {
               placeholder="*******"
             />
           </div>
-          <input type="submit" name="submit" id="submit"  value="Log In"/>
+          <input type="submit" name="submit" id="submit" value="Log In" />
         </form>
 
         <span>
@@ -63,7 +67,7 @@ export default function LogIn() {
         <div className="credentials">
           <span>Or Use these Demo account</span>
           <span>
-            Username: <b>test_user</b>, Password: <b>123456</b> 
+            Username: <b>test_user</b>, Password: <b>123456</b>
           </span>
           <span>
             Username: <b>test_user2</b>, Password: <b>123456</b>

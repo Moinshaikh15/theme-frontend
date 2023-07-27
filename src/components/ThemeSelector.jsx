@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 export default function ThemeSelector() {
   let [socket, setSocket] = useState(null);
 
-  let handleClick = async (bg_col, text_col, theme_num) => {
+  let handleClick = async (bg_col, text_col) => {
     let savedUserId = JSON.parse(localStorage.getItem("user")).id;
     let body = {
       userId: savedUserId,
@@ -26,6 +26,7 @@ export default function ThemeSelector() {
       if (response.status === 200) {
         let result = await response.json();
       } else {
+        console.log(response);
       }
     } catch (err) {
       console.log(err);
@@ -66,15 +67,15 @@ export default function ThemeSelector() {
       <div className="themes">
         <div
           className="circle theme-one"
-          onClick={() => handleClick("#0098fe", "white", "theme_one")}
+          onClick={() => handleClick("#0098fe", "white")}
         ></div>
         <div
           className="circle theme-two"
-          onClick={() => handleClick("#164e63", "white", "theme_two")}
+          onClick={() => handleClick("#164e63", "white")}
         ></div>
         <div
           className="circle theme-three"
-          onClick={() => handleClick("#ffd60a", "black", "theme_three")}
+          onClick={() => handleClick("#ffd60a", "black")}
         ></div>
       </div>
     </div>
