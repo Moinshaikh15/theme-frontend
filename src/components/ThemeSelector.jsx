@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
 export default function ThemeSelector() {
-  let [socket, setSocket] = useState(null);
 
   let handleClick = async (bg_col, text_col) => {
     let savedUserId = JSON.parse(localStorage.getItem("user")).id;
@@ -41,7 +40,7 @@ export default function ThemeSelector() {
     //connect socket
      const newSocket = io("https://theme-backend.onrender.com");
    // const newSocket = io("http://localhost:5000");
-    setSocket(newSocket);
+    
 
     newSocket?.emit("theme_check", {
       userId: Number(JSON.parse(localStorage.getItem("user")).id),
@@ -49,8 +48,6 @@ export default function ThemeSelector() {
 
     // when theme-updated message received
     newSocket?.on("theme-updated", (theme_preference) => {
-      console.log("update msg received", theme_preference);
-
       if (theme_preference !== null && theme_preference !== undefined) {
         let { primary_colour, text_colour } = theme_preference;
 
