@@ -17,7 +17,8 @@ export default function ThemeSelector() {
 
     try {
       const response = await fetch(
-        "https://theme-backend.onrender.com/theme/update-theme",
+         "https://theme-backend.onrender.com/theme/update-theme",
+        //"http://localhost:5000/theme/update-theme",
         {
           method: "POST",
           headers: {
@@ -38,27 +39,25 @@ export default function ThemeSelector() {
 
   useEffect(() => {
     //connect socket
-    const newSocket = io("https://theme-backend.onrender.com");
+     const newSocket = io("https://theme-backend.onrender.com");
+   // const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
 
     newSocket?.emit("theme_check", {
-      id: Number(JSON.parse(localStorage.getItem("user")).id),
+      userId: Number(JSON.parse(localStorage.getItem("user")).id),
     });
 
     // when theme-updated message received
     newSocket?.on("theme-updated", (theme_preference) => {
-      let savedUserId = JSON.parse(localStorage.getItem("user")).id;
+      console.log("update msg received", theme_preference);
 
       if (theme_preference !== null && theme_preference !== undefined) {
-        let { primary_colour, text_colour, user_id } = theme_preference;
+        let { primary_colour, text_colour } = theme_preference;
 
-        // check if message for the same user by checking userID
-        if (savedUserId === user_id) {
-          // Update the root variable to change theme
-          const root = document.documentElement;
-          root?.style.setProperty("--bgCol", primary_colour);
-          root?.style.setProperty("--textCol", text_colour);
-        }
+        // Update the root variable to change theme
+        const root = document.documentElement;
+        root?.style.setProperty("--bgCol", primary_colour);
+        root?.style.setProperty("--textCol", text_colour);
       }
     });
 
